@@ -9,7 +9,19 @@ class Post
     @created_at = attributes['created_at']
   end
 
+  def new_record?
+    id.nil?
+  end
+
   def save
+    if new_record?
+      insert
+    else
+      update
+    end
+  end
+
+  def insert
     insert_query = <<-SQL
       INSERT INTO posts (title, body, author, created_at)
       VALUES (?, ?, ?, ?)
@@ -20,6 +32,22 @@ class Post
                        body,
                        author,
                        Date.current.to_s
+  end
+
+  def update
+    update_query = <<-SQL
+      UPDATE posts
+      SET title = ?,
+          body = ?,
+          author = ?,
+      WHERE posts.id = ?
+    SQL
+
+    connection.execute update_query,
+                       title,
+                       body,
+                       author,
+                       id
   end
 
   def self.find(id)

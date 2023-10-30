@@ -8,7 +8,7 @@
         <div class="post">
 
           <h2 class="title">
-<!-- link to post -->
+            <!-- link to post -->
             <a href="/show_post/<%= post['id'] %>"><%= post['title'] %></a>
           </h2>
 
@@ -16,6 +16,9 @@
             <span class="author">by <%= post['author'] %> -</span>
             <em class="created_at"><%= post['created_at'] %></em>
           </small>
+
+          <!-- link to edit post -->
+          <a href="/edit_post/<%= post['id'] %>">Edit</a>
 
         </div>
         <hr />

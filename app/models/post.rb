@@ -22,6 +22,11 @@ class Post
                        Date.current.to_s
   end
 
+  def self.find(id)
+    post_hash = connection.execute('SELECT * FROM posts WHERE posts.id = ? LIMIT 1', id).first
+    Post.new(post_hash)
+  end
+
   def connection
     db_connection = SQLite3::Database.new('db/development.sqlite3')
     db_connection.result_as_hash = true

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def show_post
-    post = find_post_by_id(params['id'])
+    post = Post.find(params['id'])
 
     render 'application/show_post', locals: { post: post }
   end

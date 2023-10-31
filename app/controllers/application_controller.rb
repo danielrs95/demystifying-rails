@@ -44,7 +44,8 @@ class ApplicationController < ActionController::Base
   end
 
   def delete_post
-    connection.execute('DELETE FROM posts WHERE posts.id = ?', params['id'])
+    post = Post.find(params['id'])
+    post.destroy
 
     redirect_to '/list_posts'
   end

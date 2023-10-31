@@ -18,6 +18,8 @@ class Post
   end
 
   def save
+    return false unless valid?
+
     if new_record?
       insert
     else
@@ -52,6 +54,10 @@ class Post
                        body,
                        author,
                        id
+  end
+
+  def valid?
+    title.present? && body.present? && author.present?
   end
 
   def destroy

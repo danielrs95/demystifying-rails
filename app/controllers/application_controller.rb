@@ -42,9 +42,12 @@ class ApplicationController < ActionController::Base
   def update_post
     post = Post.find(params['id'])
     post.set_attributes('title' => params['title'], 'body' => params['body'], 'author' => params['author'])
-    post.save
 
-    redirect_to '/list_posts'
+    if post.save
+      redirect_to '/list_posts'
+    else
+      render 'application/edit_post', locals: { post: post }
+    end
   end
 
   def delete_post

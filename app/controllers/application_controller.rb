@@ -57,6 +57,21 @@ class ApplicationController < ActionController::Base
     redirect_to '/list_posts'
   end
 
+  def create_comment
+    insert_comment_query = <<-SQL
+    INSERT INTO comments (body, author, post_id, created_at)
+    VALUES (?, ?, ?, ?)
+    SQL
+
+    connection.execute insert_comment_query,
+                       params['body'],
+                       params['author'],
+                       params['post_id'],
+                       Date.current.to_s
+
+    redirect_to "/show_post/#{params['post_id']}"
+  end
+
   private
 
   def connection

@@ -58,16 +58,8 @@ class ApplicationController < ActionController::Base
   end
 
   def create_comment
-    insert_comment_query = <<-SQL
-    INSERT INTO comments (body, author, post_id, created_at)
-    VALUES (?, ?, ?, ?)
-    SQL
-
-    connection.execute insert_comment_query,
-                       params['body'],
-                       params['author'],
-                       params['post_id'],
-                       Date.current.to_s
+    post = Post.find(params['post_id'])
+    post.create_comment('body' => params['body'], 'author' => params['author'])
 
     redirect_to "/show_post/#{params['post_id']}"
   end

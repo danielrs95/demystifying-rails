@@ -35,6 +35,17 @@ class Comment
     Comment.new(comment_hash)
   end
 
+  def self.all
+    comment_row_hashes = connection.execute('SELECT * FROM comments')
+    comment_row_hashes.map do |comment_row|
+      Comment.new(comment_row)
+    end
+  end
+
+  def post
+    Post.find(post_id)
+  end
+
   def destroy
     connection.execute 'DELETE FROM comments WHERE id = ?', id
   end

@@ -80,6 +80,12 @@ class ApplicationController < ActionController::Base
     redirect_to "/show_post/#{params['post_id']}"
   end
 
+  def list_comments
+    comments = Comment.all
+
+    render 'application/list_comments', locals: { comments: comments }
+  end
+
   private
 
   def connection

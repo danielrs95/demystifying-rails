@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   post '/create_comment_for_post/:post_id' => 'application#create_comment'
   post '/list_posts/:post_id/delete_comment/:comment_id' => 'application#delete_comment'
+
+  get '/list_comments' => 'application#list_comments'
 end

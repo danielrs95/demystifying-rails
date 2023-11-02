@@ -17,7 +17,7 @@
       <div class="comments">
         <h3>Comments:</h3>
         <hr />
-        <% post.comments.each_with_index do |comment, index| %>
+        <% comments.each_with_index do |comment, index| %>
           <div class="comment">
             <small class="comment_meta">
               <span class="comment_author">#<%= index %> by <%= comment.author %> -</span>
@@ -25,6 +25,10 @@
             </small>
             <p class="comment_body"><%= comment.body %></p>
           </div>
+ <form method="post" action="/list_posts/<%= post.id %>/delete_comment/<%=
+          comment.id %>">
+            <input type="submit" value="Delete Comment" />
+          </form>
           <hr />
         <% end %>
 

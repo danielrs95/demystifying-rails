@@ -38,6 +38,12 @@ class BaseModel
     connection.execute query_string, id
   end
 
+  def self.find(id)
+    query_string = "SELECT * FROM #{table_name} WHERE #{table_name}.id = ? LIMIT 1"
+    record_hash = connection.execute(query_string, id).first
+    new(record_hash)
+  end
+
   def self.connection
     db_connection = SQLite3::Database.new('db/development.sqlite3')
     db_connection.results_as_hash = true

@@ -52,11 +52,6 @@ class Post < BaseModel
     @errors.empty?
   end
 
-  def self.find(id)
-    post_hash = connection.execute('SELECT * FROM posts WHERE posts.id = ? LIMIT 1', id).first
-    Post.new(post_hash)
-  end
-
   def comments
     comment_hashes = connection.execute 'SELECT * FROM comments WHERE comments.post_id = ?', id
     comment_hashes.map do |comment|

@@ -1,4 +1,4 @@
-class Post
+class Post < BaseModel
   attr_reader :id, :title, :body, :author, :created_at, :errors
 
   def initialize(attributes = {})
@@ -13,20 +13,6 @@ class Post
     @created_at ||= attributes['created_at']
 
     @errors = {}
-  end
-
-  def new_record?
-    id.nil?
-  end
-
-  def save
-    return false unless valid?
-
-    if new_record?
-      insert
-    else
-      update
-    end
   end
 
   def insert
@@ -80,16 +66,6 @@ class Post
   def self.find(id)
     post_hash = connection.execute('SELECT * FROM posts WHERE posts.id = ? LIMIT 1', id).first
     Post.new(post_hash)
-  end
-
-  def self.connection
-    db_connection = SQLite3::Database.new('db/development.sqlite3')
-    db_connection.results_as_hash = true
-    db_connection
-  end
-
-  def connection
-    self.class.connection
   end
 
   def comments

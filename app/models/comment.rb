@@ -1,4 +1,4 @@
-class Comment
+class Comment < BaseModel
   attr_reader :id, :body, :author, :post_id, :created_at, :errors
 
   def initialize(attributes = {})
@@ -14,20 +14,6 @@ class Comment
     @errors['body'] = "Can't be blank" if body.blank?
     @errors['author'] = "Can't be blank" if author.blank?
     @errors.empty?
-  end
-
-  def new_record?
-    @id.nil?
-  end
-
-  def save
-    return false unless valid?
-
-    if new_record?
-      insert
-    else
-      # update
-    end
   end
 
   def self.find(id)
@@ -61,15 +47,5 @@ class Comment
                        @author,
                        @post_id,
                        Date.current.to_s
-  end
-
-  def self.connection
-    db_connection = SQLite3::Database.new('db/development.sqlite3')
-    db_connection.results_as_hash = true
-    db_connection
-  end
-
-  def connection
-    self.class.connection
   end
 end

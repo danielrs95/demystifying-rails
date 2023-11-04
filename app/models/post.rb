@@ -56,13 +56,6 @@ class Post < BaseModel
     connection.execute 'DELETE FROM posts where posts.id = ?', id
   end
 
-  def self.all
-    post_hashes = connection.execute('SELECT * FROM posts')
-    post_hashes.map do |post_hash|
-      Post.new(post_hash)
-    end
-  end
-
   def self.find(id)
     post_hash = connection.execute('SELECT * FROM posts WHERE posts.id = ? LIMIT 1', id).first
     Post.new(post_hash)

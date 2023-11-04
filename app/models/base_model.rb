@@ -16,6 +16,23 @@ class BaseModel
     true
   end
 
+  # Get the table name string
+  def self.table_name
+    to_s.pluralize.downcase
+  end
+
+  def self.all
+    # rename all the variables
+
+    record_hashes = connection.execute("SELECT * FROM #{table_name}")
+    record_hashes.map do |record|
+      # Can omit classes and call new
+      # This is a class method, if we call new
+      # It will be called on the class it lives in
+      new(record)
+    end
+  end
+
   def self.connection
     db_connection = SQLite3::Database.new('db/development.sqlite3')
     db_connection.results_as_hash = true

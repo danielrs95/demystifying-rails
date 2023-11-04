@@ -33,6 +33,11 @@ class BaseModel
     end
   end
 
+  def destroy
+    query_string = "DELETE FROM #{self.class.table_name} WHERE #{self.class.table_name}.id = ?"
+    connection.execute query_string, id
+  end
+
   def self.connection
     db_connection = SQLite3::Database.new('db/development.sqlite3')
     db_connection.results_as_hash = true

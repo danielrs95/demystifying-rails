@@ -19,6 +19,7 @@
             <a href="/posts/<%= post.id %>/edit">Edit</a>
 
             <form method="post" action="/posts/<%= post.id %>" style='display: inline'>
+              <input type="hidden" name="_method" value="delete" />
               <input type="submit" value="Delete" />
             </form>
           </small>
@@ -27,7 +28,7 @@
       <% end %>
     </div>
 
-    <a href="/new_post">New Post</a>
+    <a href="/posts">New Post</a>
 
   </body>
 </html>

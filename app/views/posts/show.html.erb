@@ -22,13 +22,6 @@
             <p class="comment_body"><%= comment.body %></p>
           </div>
 
-          <!--
-          <form method="post" action="/posts/<%= @post.id %>/comments/<%= comment.id %>">
-            <input type="hidden" name="_method" value="delete" />
-            <input type="submit" value="Delete Comment" />
-          </form>
-          -->
-
           <%= form_tag post_comment_path(@post.id, comment.id), method: 'delete' do %>
             <%= submit_tag "Delete Comment" %>
           <% end %>
@@ -44,6 +37,7 @@
           <% end%>
         </div>
 
+        <!-- populate comment <form> with values -->
         <%= form_tag post_comments_path(@post.id), method: 'post' do %>
           <%= label_tag 'Comment' %>
           <%= text_area_tag 'body', @comment.body %>
@@ -56,18 +50,6 @@
           <%= submit_tag 'Add Comment' %>
         <% end %>
 
-        <!-- populate comment <form> with values -->
-        <!--
-        <form method="post" action="/posts/<%= @post.id %>/comments">
-          <label for="body">Comment</label>
-          <textarea id="body" name="body"><%= @comment.body %></textarea>
-          <br />
-          <label for="author">Name</label>
-          <input id="author" name="author" type="text" value="<%= @comment.author %>"/>
-          <br />
-          <input type="submit" value="Add Comment" />
-        </form>
-        -->
         <hr />
       </div>
     </div>

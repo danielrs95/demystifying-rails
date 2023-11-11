@@ -22,6 +22,7 @@
             <p class="comment_body"><%= comment.body %></p>
           </div>
           <form method="post" action="/posts/<%= @post.id %>/comments/<%= comment.id %>">
+            <input type="hidden" name="_method" value="delete" />
             <input type="submit" value="Delete Comment" />
           </form>
           <hr />

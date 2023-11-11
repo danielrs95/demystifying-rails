@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   # create_post -> create
   def create
-    @post = Post.new('author' => params['author'], 'title' => params['title'], 'body' => params['body'])
+    @post = Post.new('author' => params[:author], 'title' => params[:title], 'body' => params[:body])
 
     if @post.save
       redirect_to posts_path
@@ -35,9 +35,7 @@ class PostsController < ApplicationController
 
   # update_post -> update
   def update
-    @post.set_attributes('author' => params['author'],
-                         'title' => params['title'],
-                         'body' => params['body'])
+    @post.set_attributes('author' => params[:author], 'title' => params[:title], 'body' => params[:body])
     if @post.save
       redirect_to posts_path
     else
@@ -47,7 +45,7 @@ class PostsController < ApplicationController
 
   # delete_post -> delete -> destroy
   def destroy
-    post = Post.find(params['id'])
+    post = Post.find(params[:id])
     post.destroy
 
     redirect_to posts_path
@@ -56,6 +54,6 @@ class PostsController < ApplicationController
   private
 
   def find_post
-    @post = Post.find(params['id'])
+    @post = Post.find(params[:id])
   end
 end

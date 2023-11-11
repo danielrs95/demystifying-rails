@@ -9,6 +9,23 @@
       <% end%>
     </div>
 
+    <%= form_tag url_for(action: 'create'), method: 'post' do  %>
+      <%= label_tag 'Title' %>
+      <%= text_field_tag 'title', @post.title %>
+      <br /> <br />
+
+      <%= label_tag 'Body' %>
+      <%= text_area_tag 'body', @post.body %>
+      <br /> <br />
+
+      <%= label_tag 'Author' %>
+      <%= text_field_tag 'author', @post.author %>
+      <br /> <br />
+
+      <%= submit_tag "Create Post" %>
+    <% end %>
+
+    <!--
     <form method="post" action="/posts">
 
       <label for="title"> Title</label>
@@ -30,6 +47,7 @@
 
     <br />
     <a href="/posts">Back to Posts</a>
+    -->
 
   </body>
 </html>

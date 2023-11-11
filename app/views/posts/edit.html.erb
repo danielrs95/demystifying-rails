@@ -1,8 +1,8 @@
 <!-- app/views/application/edit_post.html.erb -->
 
-<%= render "errors" %>
+<%= render "shared/errors" %>
 
-<%= form_tag post_path(@post.id), action: 'put' do %>
+<%= form_tag post_path(@post.id), method: 'put' do %>
   <%= label_tag 'Title' %>
   <%= text_field_tag 'title', @post.title %>
   <br /> <br />

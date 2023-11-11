@@ -1,25 +1,23 @@
 <!-- app/views/application/edit_post.html.erb -->
 
-<html>
-  <body>
-    <%= form_tag post_path(@post.id), action: 'put' do %>
-      <%= label_tag 'Title' %>
-      <%= text_field_tag 'title', @post.title %>
-      <br /> <br />
+<%= render "errors" %>
 
-      <%= label_tag 'Body' %>
-      <%= text_area_tag 'body', @post.body %>
-      <br /> <br />
+<%= form_tag post_path(@post.id), action: 'put' do %>
+  <%= label_tag 'Title' %>
+  <%= text_field_tag 'title', @post.title %>
+  <br /> <br />
 
-      <%= label_tag 'Author' %>
-      <%= text_field_tag 'author', @post.author %>
-      <br /> <br />
+  <%= label_tag 'Body' %>
+  <%= text_area_tag 'body', @post.body %>
+  <br /> <br />
 
-      <%= submit_tag "Update Post" %>
-    <% end %>
+  <%= label_tag 'Author' %>
+  <%= text_field_tag 'author', @post.author %>
+  <br /> <br />
 
-    <br />
-    <%= link_to "Back to Posts", posts_path %>
+  <%= submit_tag "Update Post" %>
+<% end %>
 
-  </body>
-</html>
+<br />
+<%= link_to "Back to Posts", posts_path %>
+

@@ -7,16 +7,16 @@
       <% @posts.each do |post| %>
         <div class="post">
           <h2 class="title">
-            <a href="/posts/<%= post.id %>">
-              <%= post.title %>
-            </a>
+            
+            <%= link_to post.title, post_path(post.id) %>
+
           </h2>
 
           <small class="meta">
             <span class="author">by <%= post.author %> -</span>
             <em class="created_at"><%= post.created_at %></em>
 
-            <a href="/posts/<%= post.id %>/edit">Edit</a>
+            <%= link_to 'Edit', edit_post_path(post.id) %>
 
             <form method="post" action="/posts/<%= post.id %>" style='display: inline'>
               <input type="hidden" name="_method" value="delete" />
@@ -28,7 +28,7 @@
       <% end %>
     </div>
 
-    <a href="/posts/new">New Post</a>
+    <%= link_to 'New Post', new_post_path %>
 
   </body>
 </html>

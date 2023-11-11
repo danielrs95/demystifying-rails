@@ -40,11 +40,11 @@
         <!-- populate comment <form> with values -->
         <%= form_tag post_comments_path(@post.id), method: 'post' do %>
           <%= label_tag 'Comment' %>
-          <%= text_area_tag 'body', @comment.body %>
+          <%= text_area_tag 'comment[body]', @comment.body %>
           <br />
 
           <%= label_tag 'Name' %>
-          <%= text_field_tag 'author', @comment.author %>
+          <%= text_field_tag 'comment[author]', @comment.author %>
           <br />
 
           <%= submit_tag 'Add Comment' %>
@@ -54,6 +54,7 @@
       </div>
     </div>
     <br />
-    <a href="/posts">Back to Posts</a>
+
+    <%= link_to "Back to posts", posts_path %>
   </body>
 </html>

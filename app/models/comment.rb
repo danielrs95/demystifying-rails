@@ -5,11 +5,12 @@ class Comment < ActiveRecord::Base
 
   belongs_to :post
 
-  after_save :update_last_commented_on
+  after_commit :update_last_commented_on
 
   private
 
   def update_last_commented_on
     post.last_commented_on = created_at
+    post.save
   end
 end

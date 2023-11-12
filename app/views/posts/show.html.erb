@@ -22,8 +22,8 @@
             <p class="comment_body"><%= comment.body %></p>
           </div>
 
-          <%= form_tag post_comment_path(@post.id, comment.id), method: 'delete' do %>
-            <%= submit_tag "Delete Comment" %>
+          <%= form_for [@post, comment], method: 'delete' do %>
+            <%= submit_tag "Delete comment" %>   
           <% end %>
           <hr />
         <% end %>
@@ -38,18 +38,17 @@
         </div>
 
         <!-- populate comment <form> with values -->
-        <%= form_tag post_comments_path(@post.id), method: 'post' do %>
-          <%= label_tag 'Comment' %>
-          <%= text_area_tag 'comment[body]', @comment.body %>
-          <br />
+        <%= form_for [@post, @comment] do |f| %>
+          <%= f.label 'Comment' %>
+          <%= f.text_area :body %>
+          <br /> <br />
 
-          <%= label_tag 'Name' %>
-          <%= text_field_tag 'comment[author]', @comment.author %>
-          <br />
+          <%= f.label :author %>
+          <%= f.text_field :author %>
+          <br /> <br />
 
-          <%= submit_tag 'Add Comment' %>
+          <%= f.submit %>
         <% end %>
-
         <hr />
       </div>
     </div>
